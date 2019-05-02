@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+// Author: Alex Mitchelmore
+// Date: 2019-04-25
+// Demo: BallonDemo
+
 namespace FormFrontEnd
 {
     public partial class Form1 : Form
@@ -17,14 +21,37 @@ namespace FormFrontEnd
             InitializeComponent();
         }
 
+        private Ballon myFirstBallon;
+
         private void btnSet_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                myFirstBallon = new Ballon()
+                {
+                    Colour = txtColor.Text.Trim(),
+                    Height = Convert.ToDecimal(txtHeight.Text),
+                    Diameter = Convert.ToDecimal(txtDiameter.Text)
+                };
+
+                //myFirstBallon.Colour = txtColor.Text.Trim();
+                //myFirstBallon.Height = Convert.ToDecimal(txtHeight.Text);
+                //myFirstBallon.Diameter = Convert.ToDecimal(txtDiameter.Text);
+            }
+            catch(DataException ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }       
         }
 
         private void btnGet_Click(object sender, EventArgs e)
         {
-            
+            lblOutput.Text = $" Colour: {myFirstBallon.Colour} \n Height: {myFirstBallon.Height} \n Diameter: {myFirstBallon.Diameter}";
         }
     }
 }
