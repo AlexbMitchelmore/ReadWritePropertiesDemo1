@@ -29,6 +29,7 @@ namespace FormFrontEnd
             {
                 myFirstBallon = new Ballon()
                 {
+                    BallonName = "Happy the Ballon",
                     Colour = txtColor.Text.Trim(),
                     Height = Convert.ToDecimal(txtHeight.Text),
                     Diameter = Convert.ToDecimal(txtDiameter.Text)
@@ -38,6 +39,12 @@ namespace FormFrontEnd
                 //myFirstBallon.Height = Convert.ToDecimal(txtHeight.Text);
                 //myFirstBallon.Diameter = Convert.ToDecimal(txtDiameter.Text);
             }
+
+            catch (ConstraintException ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             catch(DataException ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -51,7 +58,14 @@ namespace FormFrontEnd
 
         private void btnGet_Click(object sender, EventArgs e)
         {
-            lblOutput.Text = $" Colour: {myFirstBallon.Colour} \n Height: {myFirstBallon.Height} \n Diameter: {myFirstBallon.Diameter}";
+            try
+            {
+                lblOutput.Text = $"{myFirstBallon.BallonName} specs: \n Colour: {myFirstBallon.Colour} \n Height: {myFirstBallon.Height} \n Diameter: {myFirstBallon.Diameter}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
         }
     }
 }

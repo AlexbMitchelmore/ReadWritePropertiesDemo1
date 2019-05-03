@@ -42,7 +42,7 @@
             // lblOutput
             // 
             this.lblOutput.AutoSize = true;
-            this.lblOutput.Location = new System.Drawing.Point(97, 213);
+            this.lblOutput.Location = new System.Drawing.Point(82, 215);
             this.lblOutput.Name = "lblOutput";
             this.lblOutput.Size = new System.Drawing.Size(39, 13);
             this.lblOutput.TabIndex = 17;
